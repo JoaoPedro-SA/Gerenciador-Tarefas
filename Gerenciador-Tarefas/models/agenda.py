@@ -12,8 +12,8 @@ def listaAgenda():
     response = []
     try: 
         agenda= banco.session.query(banco.agenda).all()
-        for u inagenda: 
-            response.append({"id": u.id, "descricao": u.descricao, "titulo": u.titulo, "id_usuario": u.id_usuario "prazo_final": u.prazo_final})
+        for u in agenda: 
+            response.append({"id": u.id, "descricao": u.descricao, "titulo": u.titulo, "id_usuario": u.id_usuario, "prazo_final": u.prazo_final})
     except Exception as e:
         response = {"erro": str(e)}
     finally:
@@ -24,7 +24,7 @@ def pegaAgenda(idBuscado):
     agenda = banco.session.query(banco.agenda).filter_by(id=idBuscado).first()
     try:
         if agenda.id == idBuscado:
-            response = ({"id": agenda.id, "descricao": agenda.descricao, "titulo": agenda.titulo, "id_usuario": agenda.id_usuario "prazo_final": agenda.prazo_final})
+            response = ({"id": agenda.id, "descricao": agenda.descricao, "titulo": agenda.titulo, "id_usuario": agenda.id_usuario, "prazo_final": agenda.prazo_final})
     except Exception as e: 
         response = {"erro": str(e)}
     finally:
@@ -54,7 +54,7 @@ def atualizarAgenda(id, descricao, titulo, id_usuario, prazo_final):
             agenda.id_usuario = id_usuario
             agenda.prazo_final = prazo_final
             banco.session.commit()
-            response = {"id": nova_agenda.id, "descricao": nova_agenda.descricao, "titulo": nova_agenda.titulo, "titulo": nova_agenda.titulo, "id_usuario": nova_agenda.id_usuario, "prazo_final": nova_agenda.prazo_final}
+            response = {"id": agenda.id, "descricao": agenda.descricao, "titulo": agenda.titulo, "titulo": agenda.titulo, "id_usuario": agenda.id_usuario, "prazo_final": agenda.prazo_final}
         else:
             response = {"message": "Agenda não encontrada"}
     except Exception as e:

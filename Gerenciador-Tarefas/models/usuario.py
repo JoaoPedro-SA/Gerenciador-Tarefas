@@ -8,9 +8,6 @@ def geradorDeId(dados):
         return dados["usuarios"][-1]["id"] + 1
 
 
-def teste():
-    return {"message": "Hello"} 
-
 def listaUsuario(): 
     response = []
     try: 

@@ -3,15 +3,15 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 Base = declarative_base()
 
-class Usuario(Base):
-     __tablename__ = ''
+class usuario(Base):
+     __tablename__ = 'usuario'
      id = Column(Integer, primary_key=True)
      email = Column(String, nullable=False)
      nome = Column(String, nullable=False)
      
 
-class Agenda(Base):
-     __tablename__ = 'users'
+class agenda(Base):
+     __tablename__ = 'agenda'
      id = Column(Integer, primary_key=True)
      descricao = Column(String, nullable=False)
      titulo = Column(String, nullable=False)
@@ -24,4 +24,5 @@ Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
+
 session.close()
