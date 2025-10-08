@@ -60,6 +60,7 @@ O projeto segue a arquitetura **MVC (Model-View-Controller)** e foi desenvolvido
 
  ## Diagrama ER
 
+![Logo do projeto](Imagem%20do%20WhatsApp%20de%202025-10-07%20%C3%A0(s)%2010.14.37_7a471e5f.jpg)
 
 
  ## Como rodar API
