@@ -12,7 +12,9 @@ app = Flask(__name__, template_folder=os.path.join('view', 'templates'))
 app.register_blueprint(url)
 app.register_blueprint(url2)
 
-
+from swagger import swaggerinit
+from swagger.swaggerconfig import configure_swagger
+configure_swagger(app)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
