@@ -5,7 +5,7 @@ Base = declarative_base()
 
 class usuario(Base):
      __tablename__ = 'usuario'
-     id = Column(Integer, primary_key=True)
+     id = Column(Integer, primary_key=True, autoincrement=True)
      email = Column(String, nullable=False)
      nome = Column(String, nullable=False)
      

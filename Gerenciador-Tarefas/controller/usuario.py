@@ -4,7 +4,7 @@ from models import usuario
 
 url = flask.Blueprint("app_pb", __name__)
 
-@url.route("/users",methods=["GET"])
+@url.route("/user",methods=["GET"])
 def get_users():
         response = usuario.listaUsuario()
         return response
@@ -17,20 +17,19 @@ def get_user(id):
 
 @url.route("/user",methods=["POST"], strict_slashes=False)
 def post_user():
-        name = flask.request.args.get("nome")
-        email = flask.request.args.get("email")
-        response = usuario.insereUsuario(name, email)
+        data = request.get_json()
+        response = usuario.insereUsuario(data.get('nome'), data.get('email'))
         return response
 
-@url.route("/users", methods=["PUT"], strict_slashes=False)
+@url.route("/user", methods=["PUT"], strict_slashes=False)
 def update_user():
-    name = flask.request.args.get("nome")
+    nome = flask.request.args.get("nome")
     email = flask.request.args.get("email")
     user_id = flask.request.args.get("user_id")
-    response = usuario.atualizarUsuario(user_id, name, email)
+    response = usuario.atualizarUsuario(user_id, nome, email)
     return response
         
-@url.route("/users",methods=["DELETE"], strict_slashes=False)
+@url.route("/user",methods=["DELETE"], strict_slashes=False)
 def delete_user():
         user_id = flask.request.args.get("user_id")
         response = usuario.deletarUsuario(user_id)

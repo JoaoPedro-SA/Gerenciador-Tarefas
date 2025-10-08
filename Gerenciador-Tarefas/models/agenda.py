@@ -1,12 +1,6 @@
 from flask import jsonify, request
 import models.bancoSQL as banco
 
-def geradorDeId(dados):
-    if len(dados["usuarios"]) == 0:
-        return 1
-    else:
-        return dados["usuarios"][-1]["id"] + 1
-
 
 def listaAgenda(): 
     response = []
