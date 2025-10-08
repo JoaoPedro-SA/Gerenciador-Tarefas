@@ -1,0 +1,20 @@
+# ===============================
+# Requisitos do Projeto Flask
+# Gerenciador de Tarefas - API
+# ===============================
+
+# Framework principal
+Flask
+
+# ORM e Banco de Dados
+SQLAlchemy
+Flask-SQLAlchemy
+
+# Documentação da API (Swagger)
+flask-restx
+flask-swagger-ui
+
+# Gerenciamento de variáveis de ambiente (opcional)
+python-dotenv
+
+
