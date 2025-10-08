@@ -1,18 +1,89 @@
-# Gerenciador-Tarefas
-Proposta geral: Construir um projeto progressivo de sistema web completo (full-stack), com controle em git. Envolve futura integração de back com front para que a aplicação funcione, com o front-end consumindo os dados da API criada. O grupo é livre para definir qual será a temática dessa aplicação.
+# 🗂️ Gerenciador de Tarefas — API Flask (Back-end)
 
-Entrega 1 - Backend: API com Banco de Dados, adaptada ao MVC.
-Requisitos da entrega:
-Criar um projeto Flask estruturado em MVC.
-Desenho do modelo relacional de dados utilizado no banco de dados, com uso de diagrama ER (ex: draw.io, dbdiagram.io): entidades, campo, tipo de dados, breve descrição do campo e relacionamentos, incluindo a cardinalidade (ex: 1 pra muitos, muitos pra muitos …)
-Relatório completo em README.md, explicando:
-propósito e ideia geral da aplicação, a quem se destina, o que se pretende fazer
-como rodar API: comandos detalhados para que outros possam rodar a aplicação
-stack e tecnologias utilizadas no projeto
-o diagrama ER (ex: draw.io, dbdiagram.io)
-Controle de versão no GitHub e commits bem descritos.
-Com documentação de API Swagger.
-Persistência em banco de dados (SQLite) usando ORM.
-Implementação de CRUD em entidades definidas
-Aplicação conteinerizada em Docker.
+## Grupo 
 
+- Joao Pedro Silva Antunes
+- Fernanda Aparecida Figueiredo da Silva
+- Alan Araújo da Silveira
+- Ana Cláudia Monteiro Misquita
+
+## 💡 Ideia geral da aplicação
+Esta aplicação é uma **API de Gerenciamento de Tarefas**, desenvolvida com **Flask**, com o objetivo de permitir que cada usuário **crie, liste, edite e exclua** suas próprias tarefas.  
+O sistema visa **organizar e acompanhar atividades diárias**, servindo como base para uma futura integração com o front-end.  
+
+O projeto segue a arquitetura **MVC (Model-View-Controller)** e foi desenvolvido para fins acadêmicos, como parte da **Avaliação AP1 da disciplina FFS**.
+
+---
+
+## ⚙️ Tecnologias utilizadas
+- **Python 3.12+**
+- **Flask** (framework web)
+- **Flask-SQLAlchemy** (ORM para persistência de dados)
+- **SQLite** (banco de dados)
+- **Flask-Swagger-UI** (documentação da API)
+- **Docker** (para conteinerização)
+- **Git/GitHub** (para controle de versão)
+
+---
+
+## 🧩 Estrutura do projeto (MVC)
+
+```
+📁 Gerenciador-Tarefas/
+│
+├── controller/ # Controladores e regras de negócio
+│ ├── Gerenciador-Tarefas/
+│ │ ├── app.py
+│ │ ├── README.md
+│ │ └── Requisitos.docx
+│ └── script/
+│ └── appRecuperarSenha.py
+│
+├── models/ # Modelos e conexão com o banco de dados
+│ ├── agenda.py
+│ ├── bancoSQL.py
+│ └── usuario.py
+│
+├── swagger/ # Configuração da documentação Swagger
+│ ├── namespace/
+│ │ ├── agendanamespace.py
+│ │ └── usuarionamespace.py
+│ ├── swaggerconfig.py
+│ └── swaggerinit.py
+│
+├── app.py # Ponto de entrada da aplicação Flask
+├── dockerfile # Configuração Docker
+├── requirements.txt # Dependências do projeto
+├── meubanco.db # Banco de dados SQLite
+└── README.md # Relatório do projeto
+```
+
+ ## Diagrama ER
+
+
+
+ ## Como rodar API
+
+ Para rodar a api tem que 
+
+ Primeiro fazer o git clone do repositorio. 
+
+ ``` git clone https://github.com/fernanda2003/Gerenciador-Tarefas.git ```
+
+ Logo em seguida acessa o terminal e baixa os requirements. 
+
+ ``` pip install -r requirements.txt ```
+
+Por ultimo só execulte o app.py para ter acesso da api.
+
+1- acesse a pasta do projeto pelo terminal
+
+```
+cd Gerenciador-Tarefas 
+```
+
+2- execute o app.py pelo terminal
+
+```
+python app.py
+```
