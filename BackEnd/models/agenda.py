@@ -11,7 +11,6 @@ def pegaNome(id):
     else:
         return None
 
-    
 
 def listaAgenda(): 
     response = []
