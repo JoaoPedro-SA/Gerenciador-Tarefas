@@ -1,7 +1,0 @@
-flask
-uvicorn
-SQLAlchemy
-Flask-SQLAlchemy
-flask-restx
-flask-swagger-ui
-python-dotenv
