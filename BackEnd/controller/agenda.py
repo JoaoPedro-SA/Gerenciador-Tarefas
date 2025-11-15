@@ -18,16 +18,18 @@ def get_task():
         return atualizarAgenda(task_id, data)
 
 
-@url2.route("/task",methods=["POST"], strict_slashes=False)
-def post_task():
-        data = request.get_json()
-        response = insereAgenda(data.get('titulo'), data.get('descricao'), data.get('id_usuario'), data.get('prazo_final'))
+@url2.route("/task/<int:task_id>", methods=["PUT", "OPTIONS"])
+def update_task(task_id):
+    if request.method == "OPTIONS":
+        return "", 200
 
-        return response
+    data = request.get_json()
+    return atualizarAgenda(task_id, data)
+
         
-@url2.route("/task",methods=["DELETE"])
-def delete_task():
-        task_id = flask.request.args.get("task_id")
-        response = deletarAgenda(task_id)
-        return response
-        
+@url2.route("/task/<int:task_id>", methods=["DELETE", "OPTIONS"], strict_slashes=False)
+def delete_task(task_id):
+    if request.method == "OPTIONS":
+        return "", 200
+
+    return deletarAgenda(task_id)
