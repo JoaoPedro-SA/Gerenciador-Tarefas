@@ -18,6 +18,13 @@ def get_task():
         return atualizarAgenda(task_id, data)
 
 
+@url2.route("/task",methods=["POST"], strict_slashes=False)
+def post_task():
+        data = request.get_json()
+        response = insereAgenda(data.get('titulo'), data.get('descricao'), data.get('id_usuario'), data.get('prazo_final'))
+
+        return response
+        
 @url2.route("/task/<int:task_id>", methods=["PUT", "OPTIONS"])
 def update_task(task_id):
     if request.method == "OPTIONS":

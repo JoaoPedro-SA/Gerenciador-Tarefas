@@ -1,13 +1,24 @@
 from flask import jsonify, request
 import models.bancoSQL as banco
+import requests
 
+def pegaNome(id):
+    url = f"http://127.0.0.1:5000/user/{id}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data.get("nome")
+    else:
+        return None
+
+    
 
 def listaAgenda(): 
     response = []
     try: 
         agenda= banco.session.query(banco.agenda).all()
         for u in agenda: 
-            response.append({"id": u.id, "descricao": u.descricao, "titulo": u.titulo, "id_usuario": u.id_usuario, "prazo_final": u.prazo_final})
+            response.append({"id": u.id, "descricao": u.descricao, "titulo": u.titulo, "id_usuario": u.id_usuario, "prazo_final": u.prazo_final,  "nome" : pegaNome(u.id_usuario) }) 
     except Exception as e:
         response = {"erro": str(e)}
     finally:
