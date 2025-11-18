@@ -321,11 +321,7 @@ const Tasks = () => {
                               const user = users.find(
                                 (u) => u.id === task.id_usuario
                               );
-                              return (
-                                <span>
-                                  {task.nome ?? "Usuário não encontrado"}
-                                </span>
-                              );
+                              return <span>{task.nome}</span>;
                             })()}
                           </div>
                           <div className="flex items-center gap-2 text-sm text-gray-600">

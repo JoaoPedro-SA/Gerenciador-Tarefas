@@ -1,5 +1,4 @@
-
-## Grupo 
+## Grupo
 
 - Joao Pedro Silva Antunes
 - Fernanda Aparecida Figueiredo da Silva
@@ -8,32 +7,177 @@
 
 # 🗂️ Gerenciador de Tarefas — Visão Geral do Projeto
 
-O Gerenciador de Tarefas é uma solução completa para organização de atividades diárias, permitindo que cada usuário cadastre, visualize, edite e exclua suas próprias tarefas. O projeto foi desenvolvido com foco acadêmico, utilizando arquitetura MVC e tecnologias modernas para garantir escalabilidade e fácil integração.
+O Gerenciador de Tarefas é uma plataforma para organização e gerenciamento de atividades. Ela permite operações CRUD (Criar, Ler, Atualizar, Deletar) sobre usuários e tarefas e foi desenvolvida com foco acadêmico usando uma arquitetura modular (MVC) para facilitar manutenção e evolução.
 
-## Objetivo
-Oferecer uma plataforma onde usuários possam gerenciar suas tarefas de forma simples, eficiente e segura, servindo tanto para uso pessoal quanto como base para estudos e futuras expansões.
+Este repositório contém dois módulos principais:
 
-## Componentes do Projeto
-- **Back-end:** API desenvolvida em Flask, responsável por toda a lógica de negócio, persistência de dados e exposição de endpoints para o front-end.
-- **Front-end:** Interface gráfica (UI) planejada para consumir a API, permitindo interação amigável com o usuário (pode ser implementada em qualquer framework moderno, como React, Angular ou Vue).
-- **Banco de Dados:** Utiliza SQLite para armazenar informações de usuários e tarefas, garantindo persistência e integridade dos dados.
-- **Documentação:** Swagger UI integrado para facilitar testes e integração com outros sistemas.
-- **Docker:** Possibilidade de conteinerização para facilitar o deploy e padronizar o ambiente de execução.
+- `Front/` — aplicação front-end (Next.js) pronta para rodar localmente ou em container.
+- `BackEnd/` — API REST desenvolvida em Flask com persistência via SQLite e documentação via Swagger (Flask-RESTX).
 
-## Fluxo Geral de Uso
-1. O usuário acessa a interface (front-end) e realiza login ou cadastro.
-2. Após autenticado, pode criar, visualizar, editar e excluir tarefas.
-3. Todas as operações são enviadas para a API, que processa e armazena as informações no banco de dados.
-4. A documentação Swagger permite que desenvolvedores testem e conheçam todos os endpoints disponíveis.
+## Objetivos do projeto
 
-## Diferenciais
-- Estrutura modular e organizada (MVC), facilitando manutenção e expansão.
-- Pronto para integração com diferentes interfaces de usuário.
-- Documentação automática e interativa.
-- Possibilidade de rodar localmente ou em containers Docker.
+- Fornecer uma aplicação completa com front-end e back-end que permita gerenciar tarefas (CRUD).
+- Demonstrar uso de boas práticas (estrutura modular, documentação de API, containerização).
 
-## Como executar
-1. Clone o repositório.
-2. Instale as dependências do back-end e execute a API.
-3. (Opcional) Implemente ou utilize um front-end para consumir a API.
-4. Utilize a documentação Swagger para explorar os endpoints.
+## Tecnologias principais
+
+- Front-end: Next.js (React), Tailwind CSS (opcional), Turbopack
+- Back-end: Python, Flask, Flask-RESTX (Swagger), Flask-CORS, SQLAlchemy (SQLite)
+- Outros: Docker (Dockerfile disponível), Git para versionamento
+
+## Estrutura do repositório
+
+- `Front/` — código do front-end (Next.js). Principais paths:
+
+  - `src/app/` — páginas e componentes (home, tasks, users)
+  - `package.json`, `next.config.ts`, `tailwind.config.js` — arquivos de configuração
+
+- `BackEnd/` — API em Flask:
+  - `app.py` — inicializador da aplicação e registro de blueprints
+  - `controller/` — rotas/blueprints (`usuario.py`, `agenda.py`)
+  - `models/` — lógica de acesso a dados (`bancoSQL.py`, `usuario.py`, `agenda.py`)
+  - `swagger/` — configuração do Swagger / namespaces
+
+## Requisitos (Checklist)
+
+O projeto foi desenhado para atender aos seguintes requisitos (marquei o que já está implementado):
+
+- [x] Aplicação com front-end em Next.js (pasta `Front/`) com rotas e componentes.
+- [x] Estilização com Tailwind (configuração presente em `Front/tailwind.config.js`).
+- [x] CRUD na API (endpoints para usuários e tarefas no back-end).
+- [x] Controle de versão (use Git/GitHub; mantenha commits descritivos).
+- [x] README explicando propósito, stack e instruções para rodar (este arquivo).
+
+## Como executar (Rápido)
+
+Siga as instruções abaixo para executar o projeto localmente em ambiente Windows (PowerShell). As instruções cobrem o back-end (Flask) e o front-end (Next.js).
+
+IMPORTANTE: Recomendo criar ambientes separados (virtualenv para Python / Node para front) e seguir os passos na ordem Back-end → Front-end.
+
+### 1) Back-end (API Flask)
+
+1. Abra um terminal e navegue para a pasta do back-end:
+
+```powershell
+cd "d:\faculdade\Nova pasta\ProjetoFull\BackEnd"
+```
+
+2. (Opcional, recomendado) Crie e ative um ambiente virtual Python:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+3. Instale as dependências necessárias (exemplo):
+
+```powershell
+pip install flask flask-cors flask-restx sqlalchemy
+```
+
+4. Inicie a API:
+
+```powershell
+python app.py
+```
+
+A API estará disponível em http://localhost:5000. A documentação Swagger (Flask-RESTX) estará em http://localhost:5000/api/docs (conforme `swaggerinit.py` configura `doc='/docs'` com prefix `/api`).
+
+Observações sobre o banco:
+
+- O projeto usa SQLite com o arquivo `meubanco.db` criado na pasta do back-end (veja `models/bancoSQL.py`). Se quiser resetar a base, remova `meubanco.db` e reinicie a aplicação — o schema será recriado.
+
+### 2) Front-end (Next.js)
+
+1. Abra outro terminal e vá para a pasta `Front`:
+
+```powershell
+cd "d:\faculdade\Nova pasta\ProjetoFull\Front"
+```
+
+2. Instale dependências Node:
+
+```powershell
+npm install
+```
+
+3. Rode em modo desenvolvimento:
+
+```powershell
+npm run dev
+```
+
+O Next.js costuma abrir em http://localhost:3000 (o terminal mostrará a porta). A aplicação do front deve consumir a API em `http://localhost:5000` (ou ajuste as URLs no código conforme necessário).
+
+### 3) Testando o CRUD (exemplos rápidos)
+
+Endpoints principais fornecidos pelo Back-end (pasta `controller`):
+
+- Usuários:
+
+  - GET /user — lista usuários
+  - GET /user/<id> — obtém um usuário
+  - POST /user — cria usuário (body JSON {"nome": "", "email": ""})
+  - PUT /user/<id> — atualiza usuário
+  - DELETE /user/<id> — deleta usuário
+
+- Tarefas (agenda):
+  - GET /task — lista tarefas
+  - POST /task — cria tarefa (body JSON {"titulo":"","descricao":"","id_usuario":1,"prazo_final":"YYYY-MM-DD"})
+  - PUT /task/<id> — atualiza tarefa
+  - DELETE /task/<id> — deleta tarefa
+
+Exemplo usando curl para criar usuário:
+
+```powershell
+curl -X POST http://localhost:5000/user -H "Content-Type: application/json" -d '{"nome":"João","email":"joao@example.com"}'
+```
+
+Ou usando a interface Swagger em `http://localhost:5000/api/docs` para testar interativamente.
+
+## Docker (opção)
+
+Ambas as pastas (`Front/` e `BackEnd/`) contêm `dockerfile` (ou `Dockerfile`) que permitem conteinerizar cada parte. Para rodar com Docker:
+
+1. Buildar a imagem do back-end:
+
+```powershell
+cd BackEnd
+docker build -t gerenciador-backend .
+docker run -p 5000:5000 gerenciador-backend
+```
+
+2. Buildar e rodar o front (ajuste se necessário):
+
+```powershell
+cd Front
+docker build -t gerenciador-front .
+docker run -p 3000:3000 gerenciador-front
+```
+
+## Boas práticas e recomendações
+
+- Mantenha commits pequenos e descritivos (ex.: `feat: adicionar endpoint de tarefas`, `fix: corrigir bug de salvamento`).
+- Use branches para features e PRs para revisão.
+- Inclua testes automatizados quando possível (unitários e integração).
+
+## Checklist para entrega (verificação)
+
+Antes de enviar o projeto, verifique:
+
+1. [ ] `BackEnd` inicia sem erros (`python app.py`).
+2. [ ] `Front` inicia sem erros (`npm run dev`).
+3. [ ] CRUD funciona (pelo front ou via Swagger/curl).
+4. [ ] README descreve como rodar front e back (este README atualizado cobre isso).
+5. [ ] Código no GitHub com commits claros.
+
+## Próximos passos (posso automatizar)
+
+Se você quiser eu posso:
+
+- Gerar um `requirements.txt` para o `BackEnd` com as dependências detectadas e um pequeno script de inicialização.
+- Adicionar exemplos de chamadas `fetch`/`axios` no `Front` para consumir os endpoints (integração CRUD básica).
+- Criar um `docker-compose.yml` que sobe `front` + `backend` juntos com redes e volumes.
+- Adicionar instruções para testes automáticos e CI (GitHub Actions) para rodar lint e testes.
+
+Diga qual desses itens gostaria que eu criasse agora e eu procedo a gerar os arquivos e atualizar o repositório.
